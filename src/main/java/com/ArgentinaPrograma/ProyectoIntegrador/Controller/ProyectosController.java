@@ -55,6 +55,7 @@ public class ProyectosController {
         Proy.setDescripcion(detallesProy.getDescripcion());
         Proy.setLugar(detallesProy.getLugar());
         Proy.setFecha(detallesProy.getFecha());
+        Proy.setUrl(detallesProy.getUrl());
                 
         interProy.saveProyectos(Proy);
         return interProy.getProyectos();

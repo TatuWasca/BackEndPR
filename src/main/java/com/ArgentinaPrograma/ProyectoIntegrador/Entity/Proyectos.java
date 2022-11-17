@@ -17,4 +17,5 @@ public class Proyectos {
     private String descripcion;
     private String lugar;
     private String fecha;
+    private String url;
 }
