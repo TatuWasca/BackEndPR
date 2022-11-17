@@ -11,33 +11,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
+@RequestMapping("/Proyectos")
 @CrossOrigin(origins = {"https://frontend-4b57b.web.app","https://frontend-4b57b.firebaseapp.com/"})
 public class ProyectosController {
     
     @Autowired
     private IProyectosService interProy;
     
-    @GetMapping("/Proyectos/traer")
+    @GetMapping("/traer")
     public List<Proyectos> getProyectos(){
         return interProy.getProyectos();
     }
     
-    @PostMapping("/Proyectos/crear")
+    @GetMapping("/detalles/{id}")
+    public Proyectos getOneProyectos(@PathVariable("id") Long id){
+        Proyectos proy = interProy.getOneProyectos(id).get();
+        return proy;
+    }
+    
+    @PostMapping("/crear")
     public List<Proyectos> createProyectos(@RequestBody Proyectos Proy) {
         interProy.saveProyectos(Proy);
         return interProy.getProyectos();
     }
     
-    @DeleteMapping("/Proyectos/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public List<Proyectos> deleteProyectos(@PathVariable Long id){
         interProy.deleteProyectos(id);
         return interProy.getProyectos();
     }
     
-    @PutMapping("/Proyectos/editar/{id}")
+    @PutMapping("/editar/{id}")
     public List<Proyectos> editProyectos(@PathVariable Long id,@RequestBody Proyectos detallesProy){
         
         Proyectos Proy = interProy.findProyectos(id);

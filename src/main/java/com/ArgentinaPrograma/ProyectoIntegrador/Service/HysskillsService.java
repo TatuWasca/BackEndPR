@@ -3,6 +3,7 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.HysskillsRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Hysskills;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,11 @@ public class HysskillsService implements IHysskillsService{
     public List<Hysskills> getHysskills() {
        List<Hysskills> listaHysskills = skillRepository.findAll();
        return listaHysskills;
+    }
+    
+    @Override
+    public Optional<Hysskills> getOneHysskills(Long id){
+        return skillRepository.findById(id);
     }
     
     @Override

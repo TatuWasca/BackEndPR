@@ -9,21 +9,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Banner")
 @CrossOrigin(origins = {"https://frontend-4b57b.web.app","https://frontend-4b57b.firebaseapp.com/"})
 public class BannerController {
     
     @Autowired
     private IBannerService interBan;
     
-    @GetMapping("/Banner/traer")
+    @GetMapping("/traer")
     public List<Banner> getBanner(){
         return interBan.getBanner();
     }
     
-    @PutMapping("/Banner/editar/{id}")
+    @GetMapping("/detalles/{id}")
+    public Banner getOneBanner(@PathVariable("id") Long id){
+        Banner ban = interBan.getOneBanner(id).get();
+        return ban;
+    }
+    
+    @PutMapping("/editar/{id}")
     public  List<Banner> editBanner(@PathVariable Long id,@RequestBody Banner detallesBan){
         
         Banner Ban = interBan.findBanner(id);

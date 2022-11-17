@@ -11,33 +11,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Experiencias")
 @CrossOrigin(origins = {"https://frontend-4b57b.web.app","https://frontend-4b57b.firebaseapp.com/"})
 public class ExperienciasController {
     
     @Autowired
     private IExperienciasService interExp;
     
-    @GetMapping("/Experiencias/traer")
+    @GetMapping("/traer")
     public List<Experiencias> getExperiencia(){
         return interExp.getExperiencia();
     }
+    
+    @GetMapping("/detalles/{id}")
+    public Experiencias getOneExperiencia(@PathVariable("id") Long id){
+        Experiencias exp = interExp.getOneExperiencia(id).get();
+        return exp;
+    }
 
-    @PostMapping("/Experiencias/crear")
+    @PostMapping("/crear")
     public List<Experiencias> createExperiencia(@RequestBody Experiencias Exp) {
         interExp.saveExperiencia(Exp);
         return interExp.getExperiencia();
     }
 
-    @DeleteMapping("/Experiencias/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public List<Experiencias> deleteExperiencia(@PathVariable Long id){
         interExp.deleteExperiencia(id);
         return interExp.getExperiencia();
     }
 
-    @PutMapping("/Experiencias/editar/{id}")
+    @PutMapping("/editar/{id}")
     public List<Experiencias> editExperiencia(@PathVariable Long id,@RequestBody Experiencias detallesExp){
         
         Experiencias Exp = interExp.findExperiencia(id);

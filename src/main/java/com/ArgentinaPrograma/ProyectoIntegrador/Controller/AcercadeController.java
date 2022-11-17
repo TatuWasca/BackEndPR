@@ -9,21 +9,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Acercade")
 @CrossOrigin(origins = {"https://frontend-4b57b.web.app","https://frontend-4b57b.firebaseapp.com/"})
 public class AcercadeController {
     
     @Autowired
     private IAcercadeService interAcDe;
     
-    @GetMapping("/Acercade/traer")
+    @GetMapping("/traer")
     public List<Acercade> getAcercade(){
         return interAcDe.getAcercade();
     }
+    
+    @GetMapping("/detalles/{id}")
+    public Acercade getOneAcercade(@PathVariable("id") Long id){
+        Acercade AcDe = interAcDe.getOneAcercade(id).get();
+        return AcDe;
+    }
 
-    @PutMapping("/Acercade/editar/{id}")
+    @PutMapping("/editar/{id}")
     public List<Acercade> editAcercade(@PathVariable Long id,@RequestBody Acercade detallesAcDe){
         
         Acercade AcDe = interAcDe.findAcercade(id);

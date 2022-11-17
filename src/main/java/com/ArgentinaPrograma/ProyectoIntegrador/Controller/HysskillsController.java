@@ -11,33 +11,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Hysskills")
 @CrossOrigin(origins = {"https://frontend-4b57b.web.app","https://frontend-4b57b.firebaseapp.com/"})
 public class HysskillsController {
     
     @Autowired
     private IHysskillsService interSkill;
     
-    @GetMapping("/Hysskills/traer")
+    @GetMapping("/traer")
     public List<Hysskills> getHysskills(){
         return interSkill.getHysskills();
     }
     
-    @PostMapping("/Hysskills/crear")
+    @GetMapping("/detalles/{id}")
+    public Hysskills getOneHysskills(@PathVariable("id") Long id){
+        Hysskills skill = interSkill.getOneHysskills(id).get();
+        return skill;
+    }
+    
+    @PostMapping("/crear")
     public List<Hysskills> createHysskills(@RequestBody Hysskills skill) {
         interSkill.saveHysskills(skill);
         return interSkill.getHysskills();
     }
     
-    @DeleteMapping("/Hysskills/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public List<Hysskills> deleteHysskills(@PathVariable Long id){
         interSkill.deleteHysskills(id);
         return interSkill.getHysskills();
     }
     
-    @PutMapping("/Hysskills/editar/{id}")
+    @PutMapping("/editar/{id}")
     public List<Hysskills> editHysskills(@PathVariable Long id,@RequestBody Hysskills detallesSkill){
         
         Hysskills skill = interSkill.findHysskills(id);

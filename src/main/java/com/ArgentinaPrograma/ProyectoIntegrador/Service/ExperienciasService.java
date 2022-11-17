@@ -3,6 +3,7 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.ExperienciasRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Experiencias;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,11 @@ public class ExperienciasService implements IExperienciasService{
     public List<Experiencias> getExperiencia() {
        List<Experiencias> listaExperiencias = ExpRepository.findAll();
        return listaExperiencias;
+    }
+    
+    @Override
+    public Optional<Experiencias> getOneExperiencia(Long id){
+        return ExpRepository.findById(id);
     }
     
     @Override

@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-
 public class Educaciones {
     
     @Id
@@ -20,5 +19,6 @@ public class Educaciones {
     private String descripcion;
     private String lugar;
     private String fecha;
+
 }
 
