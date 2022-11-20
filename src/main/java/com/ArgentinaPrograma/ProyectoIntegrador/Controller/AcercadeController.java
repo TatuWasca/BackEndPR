@@ -27,18 +27,17 @@ public class AcercadeController {
     
     @GetMapping("/detalles/{id}")
     public Acercade getOneAcercade(@PathVariable("id") Long id){
-        Acercade AcDe = interAcDe.getOneAcercade(id).get();
+        Acercade AcDe = interAcDe.findAcercade(id);
         return AcDe;
     }
 
     @PutMapping("/editar/{id}")
-    public List<Acercade> editAcercade(@PathVariable Long id,@RequestBody Acercade detallesAcDe){
+    public void editAcercade(@PathVariable Long id,@RequestBody Acercade detallesAcDe){
         
         Acercade AcDe = interAcDe.findAcercade(id);
 
         AcDe.setDescripcion(detallesAcDe.getDescripcion());
 
         interAcDe.saveAcercade(AcDe);
-        return interAcDe.getAcercade();
     }
 }

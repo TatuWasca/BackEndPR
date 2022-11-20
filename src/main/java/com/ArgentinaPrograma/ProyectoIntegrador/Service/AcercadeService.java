@@ -20,15 +20,9 @@ public class AcercadeService implements IAcercadeService{
     }
     
     @Override
-    public Optional<Acercade> getOneAcercade(Long id){
-        return AcDeRepository.findById(id);
-    }
-    
-    @Override
-    public List<Acercade> saveAcercade(Acercade AcDe){
+    public void saveAcercade(Acercade AcDe){
         AcDeRepository.save(AcDe);
         List<Acercade> listaAcercaDe = AcDeRepository.findAll();
-        return listaAcercaDe;
     }
     
     @Override
