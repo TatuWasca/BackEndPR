@@ -3,7 +3,6 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.ProyectosRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Proyectos;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +19,8 @@ public class ProyectosService implements IProyectosService{
     }
     
     @Override
-    public Optional<Proyectos> getOneProyectos(Long id){
-        return ProyRepository.findById(id);
-    }
-    
-    @Override
-    public List<Proyectos> saveProyectos(Proyectos Proy){
+    public void saveProyectos(Proyectos Proy){
         ProyRepository.save(Proy);
-        List<Proyectos> listaProyectos = ProyRepository.findAll();
-        return listaProyectos;
     }
     
     @Override

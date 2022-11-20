@@ -30,14 +30,13 @@ public class ProyectosController {
     
     @GetMapping("/detalles/{id}")
     public Proyectos getOneProyectos(@PathVariable("id") Long id){
-        Proyectos proy = interProy.getOneProyectos(id).get();
+        Proyectos proy = interProy.findProyectos(id);
         return proy;
     }
     
     @PostMapping("/crear")
-    public List<Proyectos> createProyectos(@RequestBody Proyectos Proy) {
+    public void createProyectos(@RequestBody Proyectos Proy) {
         interProy.saveProyectos(Proy);
-        return interProy.getProyectos();
     }
     
     @DeleteMapping("/borrar/{id}")
@@ -47,7 +46,7 @@ public class ProyectosController {
     }
     
     @PutMapping("/editar/{id}")
-    public List<Proyectos> editProyectos(@PathVariable Long id,@RequestBody Proyectos detallesProy){
+    public Proyectos editProyectos(@PathVariable Long id,@RequestBody Proyectos detallesProy){
         
         Proyectos Proy = interProy.findProyectos(id);
         
@@ -58,6 +57,6 @@ public class ProyectosController {
         Proy.setUrl(detallesProy.getUrl());
                 
         interProy.saveProyectos(Proy);
-        return interProy.getProyectos();
+        return Proy;
     }
 }

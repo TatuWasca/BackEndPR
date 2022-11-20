@@ -29,14 +29,13 @@ public class HysskillsController {
     
     @GetMapping("/detalles/{id}")
     public Hysskills getOneHysskills(@PathVariable("id") Long id){
-        Hysskills skill = interSkill.getOneHysskills(id).get();
+        Hysskills skill = interSkill.findHysskills(id);
         return skill;
     }
     
     @PostMapping("/crear")
-    public List<Hysskills> createHysskills(@RequestBody Hysskills skill) {
+    public void createHysskills(@RequestBody Hysskills skill) {
         interSkill.saveHysskills(skill);
-        return interSkill.getHysskills();
     }
     
     @DeleteMapping("/borrar/{id}")
@@ -46,7 +45,7 @@ public class HysskillsController {
     }
     
     @PutMapping("/editar/{id}")
-    public List<Hysskills> editHysskills(@PathVariable Long id,@RequestBody Hysskills detallesSkill){
+    public Hysskills editHysskills(@PathVariable Long id,@RequestBody Hysskills detallesSkill){
         
         Hysskills skill = interSkill.findHysskills(id);
         
@@ -54,6 +53,6 @@ public class HysskillsController {
         skill.setValor(detallesSkill.getValor());
                 
         interSkill.saveHysskills(skill);
-        return interSkill.getHysskills();
+        return skill;
     }
 }

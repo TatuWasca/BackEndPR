@@ -29,14 +29,13 @@ public class ExperienciasController {
     
     @GetMapping("/detalles/{id}")
     public Experiencias getOneExperiencia(@PathVariable("id") Long id){
-        Experiencias exp = interExp.getOneExperiencia(id).get();
+        Experiencias exp = interExp.findExperiencia(id);
         return exp;
     }
 
     @PostMapping("/crear")
-    public List<Experiencias> createExperiencia(@RequestBody Experiencias Exp) {
+    public void createExperiencia(@RequestBody Experiencias Exp) {
         interExp.saveExperiencia(Exp);
-        return interExp.getExperiencia();
     }
 
     @DeleteMapping("/borrar/{id}")
@@ -46,7 +45,7 @@ public class ExperienciasController {
     }
 
     @PutMapping("/editar/{id}")
-    public List<Experiencias> editExperiencia(@PathVariable Long id,@RequestBody Experiencias detallesExp){
+    public Experiencias editExperiencia(@PathVariable Long id,@RequestBody Experiencias detallesExp){
         
         Experiencias Exp = interExp.findExperiencia(id);
         
@@ -56,6 +55,6 @@ public class ExperienciasController {
         Exp.setFecha(detallesExp.getFecha());
                 
         interExp.saveExperiencia(Exp);
-        return interExp.getExperiencia();
+        return Exp;
     }
 }
