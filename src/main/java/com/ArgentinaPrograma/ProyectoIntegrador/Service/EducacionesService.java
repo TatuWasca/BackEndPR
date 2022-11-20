@@ -3,7 +3,6 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.EducacionesRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Educaciones;
 import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,15 +20,8 @@ public class EducacionesService implements IEducacionesService {
     }
     
     @Override
-    public Optional<Educaciones> getOneEducacion(Long id){
-        return EduRepository.findById(id);
-    }
-    
-    @Override
-    public List<Educaciones> saveEducacion(Educaciones Edu){
+    public void saveEducacion(Educaciones Edu){
         EduRepository.save(Edu);
-        List<Educaciones> listaEducaciones = EduRepository.findAll();
-        return listaEducaciones;
     }
     
     @Override

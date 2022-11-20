@@ -4,7 +4,6 @@ import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Educaciones;
 import com.ArgentinaPrograma.ProyectoIntegrador.Service.IEducacionesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +29,13 @@ public class EducacionesController {
      
     @GetMapping("/detalles/{id}")
     public Educaciones getOneEducacion(@PathVariable("id") Long id){
-        Educaciones edu = interEdu.getOneEducacion(id).get();
+        Educaciones edu = interEdu.findEducacion(id);
         return edu;
     }
     
     @PostMapping("/crear")
-    public List<Educaciones> createEducacion(@RequestBody Educaciones Edu) {
+    public void createEducacion(@RequestBody Educaciones Edu) {
         interEdu.saveEducacion(Edu);
-        return interEdu.getEducacion();
     }
 
     @DeleteMapping("/borrar/{id}")
@@ -47,7 +45,7 @@ public class EducacionesController {
     }
 
     @PutMapping("/editar/{id}")
-    public List<Educaciones> editEducacion(@PathVariable Long id,@RequestBody Educaciones detallesEdu){
+    public Educaciones editEducacion(@PathVariable Long id,@RequestBody Educaciones detallesEdu){
         
         Educaciones Edu = interEdu.findEducacion(id);
         
@@ -57,6 +55,6 @@ public class EducacionesController {
         Edu.setFecha(detallesEdu.getFecha());
                 
         interEdu.saveEducacion(Edu);
-        return interEdu.getEducacion();
+        return Edu;
     }
 }

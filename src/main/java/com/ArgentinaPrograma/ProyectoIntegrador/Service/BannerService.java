@@ -3,7 +3,6 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.BannerRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Banner;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +19,8 @@ public class BannerService implements IBannerService{
     }
     
     @Override
-    public Optional<Banner> getOneBanner(Long id){
-        return BanRepository.findById(id);
-    }
-    
-    @Override
-    public List<Banner> saveBanner(Banner Ban){
+    public void saveBanner(Banner Ban){
         BanRepository.save(Ban);
-        List<Banner> listaBanner = BanRepository.findAll();
-        return listaBanner;
     }
     
     @Override

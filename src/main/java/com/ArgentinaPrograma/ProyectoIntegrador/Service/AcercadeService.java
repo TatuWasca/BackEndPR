@@ -3,7 +3,6 @@ package com.ArgentinaPrograma.ProyectoIntegrador.Service;
 import com.ArgentinaPrograma.ProyectoIntegrador.Repository.AcercadeRepository;
 import com.ArgentinaPrograma.ProyectoIntegrador.Entity.Acercade;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,6 @@ public class AcercadeService implements IAcercadeService{
     @Override
     public void saveAcercade(Acercade AcDe){
         AcDeRepository.save(AcDe);
-        List<Acercade> listaAcercaDe = AcDeRepository.findAll();
     }
     
     @Override

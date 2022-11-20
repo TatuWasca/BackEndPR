@@ -27,12 +27,12 @@ public class BannerController {
     
     @GetMapping("/detalles/{id}")
     public Banner getOneBanner(@PathVariable("id") Long id){
-        Banner ban = interBan.getOneBanner(id).get();
+        Banner ban = interBan.findBanner(id);
         return ban;
     }
     
     @PutMapping("/editar/{id}")
-    public  List<Banner> editBanner(@PathVariable Long id,@RequestBody Banner detallesBan){
+    public Banner editBanner(@PathVariable Long id,@RequestBody Banner detallesBan){
         
         Banner Ban = interBan.findBanner(id);
         
@@ -41,6 +41,6 @@ public class BannerController {
         Ban.setLocalidad(detallesBan.getLocalidad());
         
         interBan.saveBanner(Ban);
-        return interBan.getBanner();
+        return Ban;
     }
 }
