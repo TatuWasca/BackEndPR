@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Acercade")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"https://frontend-4b57b.web.app/","https://frontend-4b57b.firebaseapp.com/"})
 public class AcercadeController {
     
     @Autowired
